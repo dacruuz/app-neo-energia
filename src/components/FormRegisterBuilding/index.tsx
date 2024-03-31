@@ -1,5 +1,22 @@
-export function FormRegisterBuilding() {
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
+const formRegisterBuildingSchema = z.object({
+  client: z.string(),
+  company: z.string(),
+  utep: z.string(),
+  reason: z.string(),
+  organ: z.string(),
+  local: z.string(),
+  dateOpening: z.coerce.date(),
+  dateLimit: z.coerce.date()
+});
+
+type FormRegisterBuildingSchema = z.infer<typeof formRegisterBuildingSchema>
+
+export function FormRegisterBuilding() {
+  
   const motivos = ["A Pedido do Cliente"];
   const orgaosEmissores = ["GRAR8", "GRAR", "GRRS"];
   const locais = [
@@ -38,52 +55,64 @@ export function FormRegisterBuilding() {
     "Vicente Pires"
   ];
 
+  const { register, handleSubmit } = useForm<FormRegisterBuildingSchema>({
+    resolver: zodResolver(formRegisterBuildingSchema)
+  });
+
+  function handleSubmitBuildingSettings(data: FormRegisterBuildingSchema) {
+    console.log(data);
+  }
+
   return (
     <section className="w-full py-14 flex justify-center">
       <div className="p-14 w-5/12 bg-white border-2 rounded-2xl">
         <h3 className="font-bold text-4xl">Solicitação de Obra</h3>
+
         <p className="mb-9">Solicitar Comissionamento de Obra de Incorporação de Redes.</p>
-        <form className="grid grid-cols-2 gap-4">
-          <div className="flex flex-col">
+        
+        <form onSubmit={handleSubmit(handleSubmitBuildingSettings)} className="grid grid-cols-2 gap-4">
+          <div className="flex flex-col col-span-2">
             <label className="font-bold mb-3" htmlFor="client">Cliente</label>
             <input
               className="p-2 border-2 rounded focus:outline-none focus:border-[--green-medium]"
               type="text"
-              name="client"
-              id="client"
               placeholder="Ex. Luiz Perez"
               required
+              {...register('client')}
             />
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col col-span-2">
             <label className="font-bold mb-3" htmlFor="company">Empresa/Obra</label>
             <input
               className="p-2 border-2 rounded focus:outline-none focus:border-[--green-medium]"
               type="text"
-              name="company"
               id="company"
               placeholder="Ex. Neoenergia"
               required
+              {...register('company')}
             />
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col ">
             <label className="font-bold mb-3" htmlFor="utep">Utep Responsável</label>
             <input
               className="p-2 border-2 rounded focus:outline-none focus:border-[--green-medium]"
               type="text"
-              name="utep"
-              id="company"
-              placeholder="UTEP" />
+              id="utep"
+              placeholder="UTEP"
+              required
+              {...register('utep')} 
+            />
           </div>
 
           <div className="flex flex-col">
             <label className="font-bold mb-3" htmlFor="reason">Motivo</label>
             <select
               className="p-2 border-2 rounded"
-              name="reason"
               id="reason"
+              required
+              {...register('reason')}
             >
               {
                 motivos && motivos.map((motivo, index) => (
@@ -96,9 +125,10 @@ export function FormRegisterBuilding() {
           <div className="flex flex-col">
             <label className="font-bold mb-3" htmlFor="organ">Órgão Emissor</label>
             <select
-
-              className="p-2 border-2 rounded" name="organ"
+              className="p-2 border-2 rounded"
               id="organ"
+              required
+              {...register('organ')}
             >
               {
                 orgaosEmissores && orgaosEmissores
@@ -113,9 +143,10 @@ export function FormRegisterBuilding() {
           <div className="flex flex-col">
             <label className="font-bold mb-3" htmlFor="local">Local</label>
             <select
-
-              className="p-2 border-2 rounded" name="local"
+              className="p-2 border-2 rounded"
               id="local"
+              required
+              {...register('local')}
             >
               {
                 locais && locais
@@ -132,8 +163,9 @@ export function FormRegisterBuilding() {
             <input
               className="p-2 border-2 rounded focus:outline-none focus:border-[--green-medium]"
               type="date"
-              name="opening-date"
-              id="opening-date"
+              id="dateOpening"
+              required
+              {...register('dateOpening')}
             />
           </div>
 
@@ -142,14 +174,15 @@ export function FormRegisterBuilding() {
             <input
               className="p-2 border-2 rounded focus:outline-none focus:border-[--green-medium]"
               type="date"
-              name="limit-date"
-              id="limit-date"
+              id="dateLimit"
+              required
+              {...register('dateLimit')}
             />
           </div>
 
           <input
             className="col-span-2 p-2 border-none rounded cursor-pointer font-bold bg-[--green-light] text-white"
-            type="button"
+            type="submit"
             value="Enviar"
           />
         </form>
