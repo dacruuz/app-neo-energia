@@ -62,79 +62,93 @@ export function Footer() {
       <section className="bg-[--green-medium] p-32 flex flex-wrap gap-8">
       <div>
         <h4 className="font-bold mb-5">Quem somos</h4>
-        { links.quemSomosLinks.map((quemSomos) => (
-          <ul className="pl-4">
-            <li key={quemSomos.id}>
-              <a href={quemSomos.link}>{quemSomos.nome}</a>
-            </li>
-          </ul>
-        )) }
+        <ul className="pl-4">
+          { 
+            links.quemSomosLinks.map((quemSomos) => (
+              <li key={quemSomos.id}>
+                <a href={quemSomos.link}>{quemSomos.nome}</a>
+              </li>
+            )) 
+          }
+        </ul>
       </div>
 
       <div>
         <h4 className="font-bold mb-5">Sustentabilidade</h4>
-        { links.sustentabilidadeLinks.map((sustentabilidade) => (
-          <ul className="pl-4">
-            <li key={sustentabilidade.id}>
-              <a href={sustentabilidade.link}>{sustentabilidade.nome}</a>
-            </li>
-          </ul>
-        )) }
+        <ul className="pl-4">
+          { 
+            links.sustentabilidadeLinks.map((sustentabilidade) => (
+              <li key={sustentabilidade.id}>
+                <a href={sustentabilidade.link}>{sustentabilidade.nome}</a>
+              </li>
+            )) 
+          }
+        </ul>
       </div>
 
       <div>
         <h4 className="font-bold mb-5">Compromisso Social</h4>
-        { links.compromissoSocialLinks.map((compromissoSocial) => (
-          <ul className="pl-4">
-            <li key={compromissoSocial.id}>
-              <a href={compromissoSocial.link}>{compromissoSocial.nome}</a>
-            </li>
-          </ul>
-        )) }
+        <ul className="pl-4">
+          { 
+            links.compromissoSocialLinks.map((compromissoSocial) => (
+              <li key={compromissoSocial.id}>
+                <a href={compromissoSocial.link}>{compromissoSocial.nome}</a>
+              </li>
+            )) 
+          }
+        </ul>
       </div>
 
       <div>
         <h4 className="font-bold mb-5">Inovação</h4>
-        { links.inovacaoLinks.map((inovacao) => (
-          <ul className="pl-4">
+        <ul className="pl-4">
+        { 
+          links.inovacaoLinks.map((inovacao) => (
             <li key={inovacao.id}>
               <a href={inovacao.link}>{inovacao.nome}</a>
             </li>
-          </ul>
-        )) }
+          )) 
+        }
+        </ul>
       </div>
 
       <div>
         <h4 className="font-bold mb-5">Talentos</h4>
-        { links.talentosLinks.map((talentos) => (
-          <ul className="pl-4">
-            <li key={talentos.id}>
-              <a href={talentos.link}>{talentos.nome}</a>
-            </li>
-          </ul>
-        )) }
+        <ul className="pl-4">
+          { 
+            links.talentosLinks.map((talentos) => (
+              <li key={talentos.id}>
+                <a href={talentos.link}>{talentos.nome}</a>
+              </li>
+            )) 
+          }
+        </ul>
       </div>
 
       <div>
         <h4 className="font-bold mb-5">Sala de Comunicação</h4>
-        { links.salaDeComunicacaoLinks.map((salaDeComunicacao) => (
-          <ul className="pl-4">
-            <li key={salaDeComunicacao.id}>
-              <a href={salaDeComunicacao.link}>{salaDeComunicacao.nome}</a>
-            </li>
-          </ul>
-        )) }
+        <ul className="pl-4">
+          { 
+            links.salaDeComunicacaoLinks.map((salaDeComunicacao) => (
+              <li key={salaDeComunicacao.id}>
+                <a href={salaDeComunicacao.link}>{salaDeComunicacao.nome}</a>
+              </li>
+            )) 
+          }
+        </ul>
       </div>
 
       <div>
         <h4 className="font-bold mb-5">Fale Conosco</h4>
-        { links.faleConoscoLinks.map((faleConosco) => (
-          <ul className="pl-4">
-            <li key={faleConosco.id}>
-              <a href={faleConosco.link}>{faleConosco.nome}</a>
-            </li>
-          </ul>
-        )) }
+        <ul className="pl-4">
+          { 
+            links.faleConoscoLinks.map((faleConosco) => (
+              <li key={faleConosco.id}>
+                <a href={faleConosco.link}>{faleConosco.nome}</a>
+              </li>
+            )) 
+          }
+        </ul>
       </div>
       </section>
       <section className="bg-[--green-light] p-5 flex justify-center">
