@@ -1,5 +1,9 @@
+import { OrdersTable } from "../components/OrdersTable";
+
 export function OrderPage() {
   return (
-    <h1>Order Page</h1>
+    <section className="py-14 overflow-x-auto">
+      <OrdersTable />
+    </section>
   )
 }
