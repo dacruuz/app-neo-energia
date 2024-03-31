@@ -1,14 +1,32 @@
+import { Link } from 'react-router-dom'
 import logo from '../../assets/neo-energia-logo.png'
+
+const links = [
+  {
+    name: 'Solicitar Obra',
+    path: '/formulario-solicitacao-obra'
+  },
+  {
+    name: 'Ver Órdens Solicitadas',
+    path: '/ordens-solicitadas'
+  }
+]
 
 export function NavBar() {
   return (
     <header className="px-32 py-4 flex justify-between items-center">
-      <div>
+      <Link to='/'>
         <img className='h-14' src={logo} alt="Logo Neo Energia" />
-      </div>
+      </Link>
+
       <div className="flex gap-4">
-        <a className="text-sm font-bold">Órdens Concluídas</a>
-        <a className="text-sm font-bold">Órdens Pendentes</a>
+        {
+          links && links.map((link, index) => (
+            <Link key={index} to={link.path}>
+              <span className='font-bold'>{link.name}</span>
+            </Link>
+          ))
+        }
       </div>
     </header>
   )
