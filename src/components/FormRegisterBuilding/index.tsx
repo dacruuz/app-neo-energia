@@ -2,10 +2,17 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+/** @description Criação de um schema do zod para validações do formulário */
 const formRegisterBuildingSchema = z.object({
-  client: z.string(),
-  company: z.string(),
-  utep: z.string(),
+  client: z.string()
+    .min(6, 'O mínimo de caracteres é de 6.')
+    .refine(client => {
+      return client[0].toUpperCase()
+    }),
+  company: z.string()
+    .min(6, 'O mínimo de caracteres é de 6.'),
+  utep: z.string()
+    .min(6, 'O mínimo de caracteres é de 6.'),
   reason: z.string(),
   organ: z.string(),
   local: z.string(),
@@ -55,10 +62,15 @@ export function FormRegisterBuilding() {
     "Vicente Pires"
   ];
 
-  const { register, handleSubmit } = useForm<FormRegisterBuildingSchema>({
+  const { 
+    register, 
+    handleSubmit, 
+    formState: { errors } 
+  } = useForm<FormRegisterBuildingSchema>({
     resolver: zodResolver(formRegisterBuildingSchema)
   });
 
+  /** @description Função usada para enviar os dados já tratados */
   function handleSubmitBuildingSettings(data: FormRegisterBuildingSchema) {
     console.log(data);
   }
@@ -80,6 +92,8 @@ export function FormRegisterBuilding() {
               required
               {...register('client')}
             />
+
+            {errors.client && <span className="text-red-600 font-bold text-sm">{errors.client.message}</span>}
           </div>
 
           <div className="flex flex-col col-span-2">
@@ -92,6 +106,8 @@ export function FormRegisterBuilding() {
               required
               {...register('company')}
             />
+
+            {errors.company && <span className="text-red-600 font-bold text-sm">{errors.company.message}</span>}
           </div>
 
           <div className="flex flex-col ">
@@ -104,6 +120,8 @@ export function FormRegisterBuilding() {
               required
               {...register('utep')} 
             />
+
+            {errors.utep && <span className="text-red-600 font-bold text-sm">{errors.utep.message}</span>}
           </div>
 
           <div className="flex flex-col">
